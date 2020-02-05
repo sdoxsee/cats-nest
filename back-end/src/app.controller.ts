@@ -5,16 +5,14 @@ import {
   Request,
   Res,
   UseGuards,
-  UseFilters,
 } from '@nestjs/common';
 import { Response } from 'express';
 
 import { LoginGuard } from './common/guards/login.guard';
-import { AuthExceptionFilter } from './common/filters/auth-exceptions.filter';
 import { Issuer } from 'openid-client';
+import { AuthenticatedGuard } from './common/guards/authenticated.guard';
 
 @Controller()
-@UseFilters(AuthExceptionFilter)
 export class AppController {
 
   @UseGuards(LoginGuard)
@@ -32,9 +30,10 @@ export class AppController {
     res.redirect('/');
   }
   
+  @UseGuards(AuthenticatedGuard)
   @Get('/logout')
   async logout(@Request() req, @Res() res: Response) {
-    const id_token = req.user ? req.user.id_token : undefined;
+    const id_token = req.user.id_token;
     req.logout();
     req.session.destroy(async (error: any) => {
       const TrustIssuer = await Issuer.discover(`${process.env.OAUTH2_CLIENT_PROVIDER_GOOGLE_ISSUER}/.well-known/openid-configuration`);

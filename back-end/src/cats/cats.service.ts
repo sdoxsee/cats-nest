@@ -18,16 +18,6 @@ export class CatsService {
     return updatedCatDto;
   }
 
-  async findOld() : Promise<Cat[]> {
-    //   return this.catModel.find().where('age').gte(10);
-      return this.catModel.find( {  
-          $and: [
-              {age: { $gte: 10 }},
-              {name: 'Fred'}
-          ]
-        });
-  }
-
   async findAll(): Promise<Cat[]> {
     return this.catModel.find().exec();
   }

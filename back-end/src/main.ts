@@ -24,11 +24,10 @@ async function bootstrap() {
       httpOnly: true,
     }
   }));
-  // app.setGlobalPrefix("api")
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(helmet())
-  app.use(csurf())
+  // app.use(csurf())
   
   await app.listen(3000);
 }

@@ -14,7 +14,7 @@ import { CatsModule } from './cats/cats.module';
     }),
     AuthModule,ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGODB_URL),
-    CatsModule
+    CatsModule,
   ],
   controllers: [AppController],
   providers: [],

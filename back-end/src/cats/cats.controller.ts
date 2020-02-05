@@ -4,7 +4,7 @@ import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
 import { AuthenticatedGuard } from 'src/common/guards/authenticated.guard';
 
-@UseGuards(AuthenticatedGuard)
+// @UseGuards(AuthenticatedGuard)
 @Controller('cats')
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}

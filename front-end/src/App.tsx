@@ -64,16 +64,18 @@ const App = () => {
     <div>
       <Jumbotron>
         <h1 className="display-3">Cat's Nest! <span role="img" aria-label="smiling cat">😺</span></h1>
-        {user && user.userinfo && <p className="lead">Hey {user.userinfo.name}</p>}
+        {user && user.userinfo && 
+        <p className="lead">Hey {user.userinfo.name}</p>
+        }
         <p className="lead">
-          { isEmpty(user) ? 
+          {isEmpty(user) ? 
           <Button color="primary" onClick={login}>Login</Button>
           :
           <Button color="danger" onClick={logout}>Logout</Button>
           }
         </p>
       </Jumbotron>
-      { !isEmpty(user) && <CatsTable cats={cats}/>}
+      {!isEmpty(user) && <CatsTable cats={cats}/>}
     </div>
   )
 }
