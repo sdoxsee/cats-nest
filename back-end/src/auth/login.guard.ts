@@ -1,4 +1,4 @@
-// src/common/guards/login.guard.ts
+// src/auth/login.guard.ts
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 

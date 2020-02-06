@@ -1,10 +1,11 @@
+// src/auth/oidc.strategy.ts
 import { UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, Client, UserinfoResponse, TokenSet, Issuer } from 'openid-client';
 import { AuthService } from './auth.service';
 
 export const buildOpenIdClient = async () => {
-  const TrustIssuer = await Issuer.discover(`${process.env.OAUTH2_CLIENT_PROVIDER_GOOGLE_ISSUER}/.well-known/openid-configuration`);
+  const TrustIssuer = await Issuer.discover(`${process.env.OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER}/.well-known/openid-configuration`);
   const client = new TrustIssuer.Client({
     client_id: process.env.OAUTH2_CLIENT_REGISTRATION_LOGIN_CLIENT_ID,
     client_secret: process.env.OAUTH2_CLIENT_REGISTRATION_LOGIN_CLIENT_SECRET,
